@@ -18,7 +18,7 @@ class NationalBank{
         accNo = 1000;
         for(int i=1;i<=3;i++)
         {
-            var ranNum = Math.floor(Math.random()*10)+1;
+            var ranNum = Math.floor(Math.random()*9)+1;
             accNo += (int) ranNum*(1000/(Math.pow(10,i)));
         }
 
@@ -29,7 +29,7 @@ class NationalBank{
     void loanInputs()
     {
         System.out.print("Enter Your Account No : ");
-        int tempAccNo = sc.nextInt();
+        int tempaccNo = sc.nextInt();
 
         System.out.print("Enter Your Account Balance : ");
         balance = sc.nextFloat();
@@ -47,12 +47,14 @@ class NationalBank{
         System.out.print("Enter Expect No of EMI's : ");
         emiCount = sc.nextInt();
 
-        this.validation(tempAccNo);
+        this.validation(tempaccNo);
+
     }
 
     void validation(int acc)
     {
         int attempt = 0;
+
         while(attempt<2){
             if(accNo==acc)
                 break;
@@ -63,6 +65,22 @@ class NationalBank{
             }
             
         }
+
+
+        // do{
+        //     if(accNo<1000 || accNo>2000)
+        //     {
+        //         System.out.print("Invalid Acc No Enter Valid One : ");
+        //         accNo = sc.nextInt();
+        //         attempt++;
+        //         continue;
+        //     }
+        //     else{
+        //         break;
+        //     }
+        // }while(attempt<2);
+
+
         if(attempt==2){
             System.out.println("You have Reached Maximum Attempts \nTry Again Later");
             return;
@@ -71,7 +89,7 @@ class NationalBank{
 
         if(this.balance<1000)
         {
-            System.out.println("Insufficiant Balace , Minimum Blance Amount 1000 ");
+            System.out.println("Insufficiant Balance , Minimum Blance Amount 1000 ");
             return;
         }
 
@@ -80,7 +98,7 @@ class NationalBank{
                 if(this.loanAmount<=500000){
                     if(this.salary>25000)
                     {
-                        System.out.println("For Car Loan You have to Pay 36 Emi's");
+                        System.out.println("\nFor Car Loan You have to Pay 36 Emi's");
                         this.emiCount = 36;
                         this.display();
                         break;
@@ -98,7 +116,7 @@ class NationalBank{
                 if(this.loanAmount<=6000000){
                     if(this.salary>50000)
                     {
-                        System.out.println("For Car Loan You have to Pay 36 Emi's");
+                        System.out.println("\nFor House Loan You have to Pay 60 Emi's");
                         this.emiCount = 60;
                         this.display();
                         break;
@@ -113,11 +131,11 @@ class NationalBank{
                     break;
                 }
                 
-            case "buisness":
-                if(this.loanAmount<=8000000){
+            case "business":
+                if(this.loanAmount<=7500000){
                     if(this.salary>75000)
                     {
-                        System.out.println("For Car Loan You have to Pay 84 Emi's");
+                        System.out.println("For Business Loan You have to Pay 84 Emi's");
                         this.emiCount = 84;
                         this.display();
                         break;
@@ -132,18 +150,18 @@ class NationalBank{
                     break;
                 }
             default: 
-                System.out.printf("%s this Loan was Not Provide in Our Bank",loanType);
+                System.out.printf("%s Loan was Not Provide in Our Bank",loanType);
                 break;
         }
     }
     void display(){
-        System.out.println("\n");
+        System.out.println();
         System.out.println("Account Holder Details");
         System.out.println("Account No : "+this.accNo);
         System.out.printf("Eligible for %s Loan\n",this.loanType.toUpperCase());
         System.out.println("Loan Amount : "+this.loanAmount);
         System.out.println("No of Emis : "+this.emiCount);
-        System.out.println("\n");
+        System.out.println();
         System.out.println("Your Loan Application has been Successfully Sanctioned");
         System.out.println("Thanks for Visiting Our Bank");
     }
